@@ -78,7 +78,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Raides ir skaiciai algoritmas", "ASCII Spausdinami simboliai algoritmas" });
+            comboBox1.Items.AddRange(new object[] { "Raides ir skaiciai zodynas algoritmas", "ASCII Spausdinami simboliai algoritmas", "Raides ir skaiciai masyvas algoritmas" });
             comboBox1.Location = new Point(22, 321);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(194, 23);
