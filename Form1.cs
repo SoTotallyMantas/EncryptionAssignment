@@ -110,7 +110,7 @@ namespace EncryptionAssignment
 
                 if (abcArray.Contains(cipherChar))
                 {
-                    for (int j = 0; j < 35; j++)
+                    for (int j = 0; j < 36; j++)
                     {
                         if (keyChar == abcArray[j])
                         {
@@ -120,7 +120,7 @@ namespace EncryptionAssignment
                     {
 
                     }
-                    for (int j = 0; j < 35; j++)
+                    for (int j = 0; j < 36; j++)
                     {
                         if (cipherChar == abcArray[j])
                         {
@@ -194,7 +194,7 @@ namespace EncryptionAssignment
                 char keyChar = key[keycounter++ % key.Length];
                 if (abcArray.Contains(cipherChar))
                 {
-                    for (int j = 0; j < 35; j++)
+                    for (int j = 0; j < 36; j++)
                     {
                         if (keyChar == abcArray[j])
                         {
@@ -204,7 +204,7 @@ namespace EncryptionAssignment
                     {
 
                     }
-                    for (int j = 0; j < 35; j++)
+                    for (int j = 0; j < 36; j++)
                     {
                         if (cipherChar == abcArray[j])
                         {
