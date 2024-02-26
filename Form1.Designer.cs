@@ -37,11 +37,16 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            comboBox2 = new ComboBox();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem1 = new ToolStripMenuItem();
+            selectFileToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // Input
             // 
-            Input.Location = new Point(22, 39);
+            Input.Location = new Point(22, 58);
             Input.Multiline = true;
             Input.Name = "Input";
             Input.Size = new Size(360, 276);
@@ -49,7 +54,7 @@
             // 
             // Output
             // 
-            Output.Location = new Point(428, 39);
+            Output.Location = new Point(428, 58);
             Output.Multiline = true;
             Output.Name = "Output";
             Output.Size = new Size(360, 276);
@@ -79,7 +84,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Raides ir skaiciai zodynas algoritmas", "ASCII Spausdinami simboliai algoritmas", "Raides ir skaiciai masyvas algoritmas" });
-            comboBox1.Location = new Point(22, 321);
+            comboBox1.Location = new Point(227, 340);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(194, 23);
             comboBox1.TabIndex = 4;
@@ -103,7 +108,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(21, 16);
+            label2.Location = new Point(22, 40);
             label2.Name = "label2";
             label2.Size = new Size(35, 15);
             label2.TabIndex = 7;
@@ -112,17 +117,52 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(431, 16);
+            label3.Location = new Point(428, 40);
             label3.Name = "label3";
             label3.Size = new Size(45, 15);
             label3.TabIndex = 8;
             label3.Text = "Output";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Vigenere", "DES" });
+            comboBox2.Location = new Point(27, 340);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(194, 23);
+            comboBox2.TabIndex = 9;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem1 });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 11;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem1
+            // 
+            fileToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { selectFileToolStripMenuItem });
+            fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
+            fileToolStripMenuItem1.Size = new Size(37, 20);
+            fileToolStripMenuItem1.Text = "File";
+            // 
+            // selectFileToolStripMenuItem
+            // 
+            selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
+            selectFileToolStripMenuItem.Size = new Size(180, 22);
+            selectFileToolStripMenuItem.Text = "Select File";
+            selectFileToolStripMenuItem.Click += selectFileToolStripMenuItem_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(menuStrip1);
+            Controls.Add(comboBox2);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -132,8 +172,11 @@
             Controls.Add(EncryptButton);
             Controls.Add(Output);
             Controls.Add(Input);
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -149,5 +192,9 @@
         private Label label1;
         private Label label2;
         private Label label3;
+        private ComboBox comboBox2;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem1;
+        private ToolStripMenuItem selectFileToolStripMenuItem;
     }
 }
