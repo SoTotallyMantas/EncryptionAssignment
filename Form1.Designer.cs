@@ -54,6 +54,7 @@
             // 
             // Output
             // 
+            Output.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Output.Location = new Point(428, 58);
             Output.Multiline = true;
             Output.Name = "Output";
@@ -152,7 +153,7 @@
             // selectFileToolStripMenuItem
             // 
             selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
-            selectFileToolStripMenuItem.Size = new Size(180, 22);
+            selectFileToolStripMenuItem.Size = new Size(126, 22);
             selectFileToolStripMenuItem.Text = "Select File";
             selectFileToolStripMenuItem.Click += selectFileToolStripMenuItem_Click;
             // 
@@ -174,7 +175,6 @@
             Controls.Add(Input);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

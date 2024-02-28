@@ -17,14 +17,15 @@ namespace EncryptionAssignment
 
 
             InitializeComponent();
-           
+
             comboBox2.SelectedIndex = 0;
         }
 
         private void EncryptButton_Click(object sender, EventArgs e)
         {
+            Output.Clear();
             FileOperations fileOperations = new FileOperations();
-           
+
             if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "Vigenere")
             {
 
@@ -42,38 +43,66 @@ namespace EncryptionAssignment
                 }
             }
             DESEncryptionDecryptionClass DES = new DESEncryptionDecryptionClass();
-            
+
             if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "DES")
             {
-                if(Selectedfile==null)
+                if (comboBox1.SelectedIndex == -1)
                 {
-                    CallFileOperations();
-                    return; 
+                    MessageBox.Show("Please select a method");
+                    return;
                 }
+                //if(Selectedfile==null)
+                //{
+                //    CallFileOperations();
+                //    return; 
+                //}
+                byte[] bitoutput;
                 switch (comboBox1.SelectedIndex)
                 {
+                    
                     case 0:
-                         DES.EncryptDES(Input.Text,Selectedfile, Key.Text, CipherMode.ECB);
-                        Output.Text = fileOperations.readfile(Selectedfile);
+
+                       bitoutput = DES.EncryptDES(Input.Text, Key.Text, CipherMode.ECB);
+                        OutputFormat(bitoutput);
+
                         break;
                     case 1:
-                        DES.EncryptDES(Input.Text, Selectedfile, Key.Text, CipherMode.CBC);
-                        Output.Text = fileOperations.readfile(Selectedfile);
+                       bitoutput=DES.EncryptDES(Input.Text, Key.Text, CipherMode.CBC);
+                        OutputFormat(bitoutput);
+
+
                         break;
                     case 2:
-                        DES.EncryptDES(Input.Text, Selectedfile, Key.Text, CipherMode.CFB);
-                        Output.Text = fileOperations.readfile(Selectedfile);
+                        bitoutput =  DES.EncryptDES(Input.Text, Key.Text, CipherMode.CFB);
+                        OutputFormat(bitoutput);
                         break;
                 }
+                for (int i = 0; i < DES.ReturnableIV.Length - 1; i++)
+                {
+                    Output.Text += DES.ReturnableIV[i] + ",";
+                }
+                Output.Text += DES.ReturnableIV[DES.ReturnableIV.Length - 1];
             }
 
 
 
         }
+        public void OutputFormat(byte[] encryptedbytes)
+        {
+            for(int i=0;i< encryptedbytes.Length-1;i++)
+            { 
+                Output.Text += encryptedbytes[i] + ",";
+            }
+            Output.Text += encryptedbytes[encryptedbytes.Length - 1] + ".";
+
+        }
 
         private void DecryptButton_Click(object sender, EventArgs e)
         {
-            
+            Output.Clear();
+            DESEncryptionDecryptionClass DES = new DESEncryptionDecryptionClass();
+
+            DES.Example();
             if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "Vigenere Dictionary")
             {
                 switch (comboBox1.SelectedIndex)
@@ -90,25 +119,61 @@ namespace EncryptionAssignment
 
                 }
             }
-            //if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "DES")
-            //{
-            //    switch(comboBox1.SelectedIndex)
-            //    {
-            //        case 0:
-            //            Output.Text = DES.Dencrypt(Input.Text, Key.Text, DESMode.ECB);
-            //            break;
-            //        case 1:
-            //            Output.Text = DES.Dencrypt(Input.Text, Key.Text, DESMode.CBC);
-            //            break;
-            //        case 2:
-            //            Output.Text = DES.Dencrypt(Input.Text, Key.Text, DESMode.CFB);
-            //            break;
-            //    }
-            //}
+
+            if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "DES")
+            {
+                if (comboBox1.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a method");
+                    return;
+                }
+                switch (comboBox1.SelectedIndex)
+                {
+                    case 0:
+                        Input.Text = DES.DecryptDES(FormatDESEncryptedText(), Key.Text, FormatDESIV(), CipherMode.ECB);
+                        break;
+                    case 1:
+                        Input.Text = DES.DecryptDES(FormatDESEncryptedText(), Key.Text, FormatDESIV(), CipherMode.CBC);
+                        break;
+                    case 2:
+                        Input.Text = DES.DecryptDES(FormatDESEncryptedText(), Key.Text, FormatDESIV(), CipherMode.CFB);
+                        break;
+                }
+            }
 
 
         }
+        public byte[] FormatDESIV()
+        {
+            byte[] iv=null;
+            string[] ivs = Output.Text.Split('.');
+            foreach(string s in ivs)
+            {
 
+                iv = Encoding.UTF8.GetBytes(s);
+            }
+            return iv;
+        }
+        public  byte[] FormatDESEncryptedText()
+        {
+            byte[] result = null;
+            int Length = 0;
+            string Text = Output.Text;
+            foreach (char c in Text)
+            {
+                Length++; 
+                if(c=='.')
+                {
+                    Text = Text.Remove(Text.Length-Length , Text.Length);
+                    break;
+                }
+                    
+                
+            }
+            
+            result = Encoding.UTF8.GetBytes(Text);
+            return result;
+        }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboboxCollections collections = new ComboboxCollections();
@@ -130,7 +195,7 @@ namespace EncryptionAssignment
         private void CallFileOperations()
         {
             FileOperations fileOperations = new FileOperations();
-           
+
             Text = fileOperations.openfiledialog();
             Selectedfile = fileOperations.Selectedpath;
         }
