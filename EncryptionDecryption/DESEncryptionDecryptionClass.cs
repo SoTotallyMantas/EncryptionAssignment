@@ -202,8 +202,11 @@ namespace EncryptionAssignment.VigenereEncryptionDecryption
                             des.Mode = mode;
                        
                             des.Padding = PaddingMode.PKCS7;
-                            
-                        
+                        if (mode == CipherMode.CFB)
+                        {
+                            des.FeedbackSize = 8;
+                        }
+
 
 
 
@@ -286,6 +289,10 @@ namespace EncryptionAssignment.VigenereEncryptionDecryption
                     {
                         des.Mode = mode;
                         des.Padding = PaddingMode.PKCS7;
+                        if (mode == CipherMode.CFB)
+                        {
+                            des.FeedbackSize = 8;
+                        }
 
                         using (ICryptoTransform decryptor = des.CreateDecryptor(key, iv))
 

@@ -59,21 +59,21 @@ namespace EncryptionAssignment
                 byte[] bitoutput;
                 switch (comboBox1.SelectedIndex)
                 {
-                    
+
                     case 0:
 
-                       bitoutput = DES.EncryptDES(Input.Text, Key.Text, CipherMode.ECB);
+                        bitoutput = DES.EncryptDES(Input.Text, Key.Text, CipherMode.ECB);
                         OutputFormat(bitoutput);
 
                         break;
                     case 1:
-                       bitoutput=DES.EncryptDES(Input.Text, Key.Text, CipherMode.CBC);
+                        bitoutput = DES.EncryptDES(Input.Text, Key.Text, CipherMode.CBC);
                         OutputFormat(bitoutput);
 
 
                         break;
                     case 2:
-                        bitoutput =  DES.EncryptDES(Input.Text, Key.Text, CipherMode.CFB);
+                        bitoutput = DES.EncryptDES(Input.Text, Key.Text, CipherMode.CFB);
                         OutputFormat(bitoutput);
                         break;
                 }
@@ -89,8 +89,8 @@ namespace EncryptionAssignment
         }
         public void OutputFormat(byte[] encryptedbytes)
         {
-            for(int i=0;i< encryptedbytes.Length-1;i++)
-            { 
+            for (int i = 0; i < encryptedbytes.Length - 1; i++)
+            {
                 Output.Text += encryptedbytes[i] + ",";
             }
             Output.Text += encryptedbytes[encryptedbytes.Length - 1] + ".";
@@ -99,10 +99,10 @@ namespace EncryptionAssignment
 
         private void DecryptButton_Click(object sender, EventArgs e)
         {
-            Output.Clear();
+            Input.Clear();
             DESEncryptionDecryptionClass DES = new DESEncryptionDecryptionClass();
 
-            DES.Example();
+            //DES.Example();
             if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "Vigenere Dictionary")
             {
                 switch (comboBox1.SelectedIndex)
@@ -145,33 +145,33 @@ namespace EncryptionAssignment
         }
         public byte[] FormatDESIV()
         {
-            byte[] iv=null;
+            byte[] iv = null;
             string[] ivs = Output.Text.Split('.');
-            foreach(string s in ivs)
+            foreach (string s in ivs)
             {
 
-                iv = Encoding.UTF8.GetBytes(s);
+                iv = s.Split(',').Select(byte.Parse).ToArray();
             }
             return iv;
         }
-        public  byte[] FormatDESEncryptedText()
+        public byte[] FormatDESEncryptedText()
         {
             byte[] result = null;
             int Length = 0;
             string Text = Output.Text;
             foreach (char c in Text)
             {
-                Length++; 
-                if(c=='.')
+                Length++;
+                if (c == '.')
                 {
-                    Text = Text.Remove(Text.Length-Length , Text.Length);
+                    Text = Text.Remove(Length-1);
                     break;
                 }
-                    
-                
+
+
             }
-            
-            result = Encoding.UTF8.GetBytes(Text);
+
+            result = Text.Split(',').Select(byte.Parse).ToArray();
             return result;
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
