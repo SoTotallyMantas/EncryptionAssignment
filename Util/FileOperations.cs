@@ -16,7 +16,7 @@ namespace EncryptionAssignment.Util
 
         public string Selectedpath { get; set; }
 
-        public string openfiledialog()
+        public string readfromfile()
         {
             
             path += "\\EncryptionAssingment";

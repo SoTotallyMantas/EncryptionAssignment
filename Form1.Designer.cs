@@ -41,6 +41,7 @@
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem1 = new ToolStripMenuItem();
             selectFileToolStripMenuItem = new ToolStripMenuItem();
+            saveOutputToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -145,7 +146,7 @@
             // 
             // fileToolStripMenuItem1
             // 
-            fileToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { selectFileToolStripMenuItem });
+            fileToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { selectFileToolStripMenuItem, saveOutputToolStripMenuItem });
             fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             fileToolStripMenuItem1.Size = new Size(37, 20);
             fileToolStripMenuItem1.Text = "File";
@@ -153,9 +154,16 @@
             // selectFileToolStripMenuItem
             // 
             selectFileToolStripMenuItem.Name = "selectFileToolStripMenuItem";
-            selectFileToolStripMenuItem.Size = new Size(126, 22);
+            selectFileToolStripMenuItem.Size = new Size(180, 22);
             selectFileToolStripMenuItem.Text = "Select File";
             selectFileToolStripMenuItem.Click += selectFileToolStripMenuItem_Click;
+            // 
+            // saveOutputToolStripMenuItem
+            // 
+            saveOutputToolStripMenuItem.Name = "saveOutputToolStripMenuItem";
+            saveOutputToolStripMenuItem.Size = new Size(180, 22);
+            saveOutputToolStripMenuItem.Text = "Save Output to File";
+            saveOutputToolStripMenuItem.Click += saveOutputToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -196,5 +204,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem1;
         private ToolStripMenuItem selectFileToolStripMenuItem;
+        private ToolStripMenuItem saveOutputToolStripMenuItem;
     }
 }

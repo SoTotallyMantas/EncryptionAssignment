@@ -302,8 +302,17 @@ namespace EncryptionAssignment.VigenereEncryptionDecryption
 
                             while (read > 0)
                             {
-                                read = cStream.Read(decrypted, offset, decrypted.Length - offset);
-                                offset += read;
+                                try
+                                {
+                                    read = cStream.Read(decrypted, offset, decrypted.Length - offset);
+                                    offset += read;
+
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message + "  Wrong Mode  ");
+                                    break;
+                                }
                             }
                         }
                     }
