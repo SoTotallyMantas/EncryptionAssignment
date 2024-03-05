@@ -240,38 +240,7 @@ namespace EncryptionAssignment.VigenereEncryptionDecryption
         }
         
 
-        public void Example()
-        {
-            try
-            {
-                byte[] key;
-                byte[] iv;
 
-                // Create a new DES object to generate a random key
-                // and initialization vector (IV).
-                using (DES des = DES.Create())
-                {
-                    key = des.Key;
-                    iv = des.IV;
-                }
-
-                // Create a string to encrypt.
-                string original = "Here is some data to encrypt.";
-
-                // Encrypt the string to an in-memory buffer.
-                byte[] encrypted = EncryptTextToMemory(original, key, iv,CipherMode.CBC);
-
-                // Decrypt the buffer back to a string.
-                string decrypted = DecryptTextFromMemory(encrypted, key, iv, CipherMode.CBC);
-
-                // Display the decrypted string to the console.
-                Console.WriteLine(decrypted);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
 
        
         public static string DecryptTextFromMemory(byte[] encrypted, byte[] key, byte[] iv, CipherMode mode)

@@ -50,6 +50,11 @@ namespace EncryptionAssignment.Util
         }
         public string savetofile(string text)
         {
+            path += "\\EncryptionAssingment";
+            if (!System.IO.Directory.Exists(path))
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
             SaveFileDialog Filedialog = new SaveFileDialog()
             {
                 InitialDirectory = path,

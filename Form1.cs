@@ -109,7 +109,7 @@ namespace EncryptionAssignment
             
             DESEncryptionDecryptionClass DES = new DESEncryptionDecryptionClass();
 
-            //DES.Example();
+           
             if (comboBox2.Items[comboBox2.SelectedIndex].ToString() == "Vigenere Dictionary")
             {
                 switch (comboBox1.SelectedIndex)
