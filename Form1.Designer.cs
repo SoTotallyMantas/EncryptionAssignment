@@ -42,7 +42,19 @@
             fileToolStripMenuItem1 = new ToolStripMenuItem();
             selectFileToolStripMenuItem = new ToolStripMenuItem();
             saveOutputToolStripMenuItem = new ToolStripMenuItem();
+            readRSAFileToolStripMenuItem = new ToolStripMenuItem();
+            keyGroupBox = new GroupBox();
+            RSAInpuGroupBox = new GroupBox();
+            button2 = new Button();
+            button1 = new Button();
+            label5 = new Label();
+            label4 = new Label();
+            YNumberInput = new TextBox();
+            XNumberInput = new TextBox();
+            button3 = new Button();
             menuStrip1.SuspendLayout();
+            keyGroupBox.SuspendLayout();
+            RSAInpuGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // Input
@@ -50,7 +62,7 @@
             Input.Location = new Point(22, 58);
             Input.Multiline = true;
             Input.Name = "Input";
-            Input.Size = new Size(360, 276);
+            Input.Size = new Size(360, 263);
             Input.TabIndex = 0;
             // 
             // Output
@@ -59,7 +71,7 @@
             Output.Location = new Point(428, 58);
             Output.Multiline = true;
             Output.Name = "Output";
-            Output.Size = new Size(360, 276);
+            Output.Size = new Size(360, 263);
             Output.TabIndex = 1;
             // 
             // EncryptButton
@@ -86,14 +98,14 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Raides ir skaiciai zodynas algoritmas", "ASCII Spausdinami simboliai algoritmas", "Raides ir skaiciai masyvas algoritmas" });
-            comboBox1.Location = new Point(227, 340);
+            comboBox1.Location = new Point(222, 327);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(194, 23);
             comboBox1.TabIndex = 4;
             // 
             // Key
             // 
-            Key.Location = new Point(22, 386);
+            Key.Location = new Point(6, 18);
             Key.Name = "Key";
             Key.Size = new Size(161, 23);
             Key.TabIndex = 5;
@@ -101,7 +113,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 366);
+            label1.Location = new Point(0, 0);
             label1.Name = "label1";
             label1.Size = new Size(26, 15);
             label1.TabIndex = 6;
@@ -128,8 +140,8 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Vigenere", "DES" });
-            comboBox2.Location = new Point(27, 340);
+            comboBox2.Items.AddRange(new object[] { "Vigenere", "DES", "RSA" });
+            comboBox2.Location = new Point(22, 327);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(194, 23);
             comboBox2.TabIndex = 9;
@@ -140,13 +152,13 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(911, 24);
             menuStrip1.TabIndex = 11;
             menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem1
             // 
-            fileToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { selectFileToolStripMenuItem, saveOutputToolStripMenuItem });
+            fileToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { selectFileToolStripMenuItem, saveOutputToolStripMenuItem, readRSAFileToolStripMenuItem });
             fileToolStripMenuItem1.Name = "fileToolStripMenuItem1";
             fileToolStripMenuItem1.Size = new Size(37, 20);
             fileToolStripMenuItem1.Text = "File";
@@ -165,17 +177,112 @@
             saveOutputToolStripMenuItem.Text = "Save Output to File";
             saveOutputToolStripMenuItem.Click += saveOutputToolStripMenuItem_Click;
             // 
+            // readRSAFileToolStripMenuItem
+            // 
+            readRSAFileToolStripMenuItem.Name = "readRSAFileToolStripMenuItem";
+            readRSAFileToolStripMenuItem.Size = new Size(180, 22);
+            readRSAFileToolStripMenuItem.Text = "Read RSA File";
+            readRSAFileToolStripMenuItem.Click += readRSAFileToolStripMenuItem_Click;
+            // 
+            // keyGroupBox
+            // 
+            keyGroupBox.Controls.Add(Key);
+            keyGroupBox.Controls.Add(label1);
+            keyGroupBox.Location = new Point(22, 356);
+            keyGroupBox.Name = "keyGroupBox";
+            keyGroupBox.Size = new Size(173, 47);
+            keyGroupBox.TabIndex = 12;
+            keyGroupBox.TabStop = false;
+            // 
+            // RSAInpuGroupBox
+            // 
+            RSAInpuGroupBox.BackColor = SystemColors.Control;
+            RSAInpuGroupBox.Controls.Add(button3);
+            RSAInpuGroupBox.Controls.Add(button2);
+            RSAInpuGroupBox.Controls.Add(button1);
+            RSAInpuGroupBox.Controls.Add(label5);
+            RSAInpuGroupBox.Controls.Add(label4);
+            RSAInpuGroupBox.Controls.Add(YNumberInput);
+            RSAInpuGroupBox.Controls.Add(XNumberInput);
+            RSAInpuGroupBox.Location = new Point(22, 356);
+            RSAInpuGroupBox.Name = "RSAInpuGroupBox";
+            RSAInpuGroupBox.Size = new Size(823, 60);
+            RSAInpuGroupBox.TabIndex = 13;
+            RSAInpuGroupBox.TabStop = false;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(572, 30);
+            button2.Name = "button2";
+            button2.Size = new Size(110, 23);
+            button2.TabIndex = 5;
+            button2.Text = "AttemptCracking";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(417, 31);
+            button1.Name = "button1";
+            button1.Size = new Size(142, 23);
+            button1.TabIndex = 4;
+            button1.Text = "GeneratePrime";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(235, 11);
+            label5.Name = "label5";
+            label5.Size = new Size(14, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Y";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(17, 11);
+            label4.Name = "label4";
+            label4.Size = new Size(14, 15);
+            label4.TabIndex = 2;
+            label4.Text = "X";
+            // 
+            // YNumberInput
+            // 
+            YNumberInput.Location = new Point(235, 31);
+            YNumberInput.Name = "YNumberInput";
+            YNumberInput.Size = new Size(176, 23);
+            YNumberInput.TabIndex = 1;
+            // 
+            // XNumberInput
+            // 
+            XNumberInput.Location = new Point(19, 31);
+            XNumberInput.Name = "XNumberInput";
+            XNumberInput.Size = new Size(194, 23);
+            XNumberInput.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(691, 30);
+            button3.Name = "button3";
+            button3.Size = new Size(93, 23);
+            button3.TabIndex = 6;
+            button3.Text = "CalcPrivate";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(911, 450);
+            Controls.Add(RSAInpuGroupBox);
+            Controls.Add(keyGroupBox);
             Controls.Add(menuStrip1);
             Controls.Add(comboBox2);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(Key);
             Controls.Add(comboBox1);
             Controls.Add(DecryptButton);
             Controls.Add(EncryptButton);
@@ -185,6 +292,10 @@
             Name = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            keyGroupBox.ResumeLayout(false);
+            keyGroupBox.PerformLayout();
+            RSAInpuGroupBox.ResumeLayout(false);
+            RSAInpuGroupBox.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,5 +316,15 @@
         private ToolStripMenuItem fileToolStripMenuItem1;
         private ToolStripMenuItem selectFileToolStripMenuItem;
         private ToolStripMenuItem saveOutputToolStripMenuItem;
+        private GroupBox keyGroupBox;
+        private GroupBox RSAInpuGroupBox;
+        private Label label5;
+        private Label label4;
+        private TextBox YNumberInput;
+        private TextBox XNumberInput;
+        private Button button1;
+        private Button button2;
+        private ToolStripMenuItem readRSAFileToolStripMenuItem;
+        private Button button3;
     }
 }
