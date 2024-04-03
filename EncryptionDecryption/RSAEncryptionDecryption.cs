@@ -64,10 +64,12 @@ namespace EncryptionAssignment.EncryptionDecryption
             BigInteger encryptedBigInteger = new BigInteger(Input);
             byte[] decryptedBytes = decrypt(encryptedBigInteger, privateKey, modulus).ToByteArray();
             return Encoding.UTF8.GetString(decryptedBytes);
+            
         }
         public static BigInteger StringToBigInteger(string str)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(str);
+
             return new BigInteger(bytes);
         }
        
@@ -171,13 +173,24 @@ namespace EncryptionAssignment.EncryptionDecryption
         private BigInteger genE(BigInteger Phi)
         {
             BigInteger e = 65537; // Commonly used public exponent
-            while (BigInteger.GreatestCommonDivisor(e, Phi) != 1)
+            while (BigInteger.GreatestCommonDivisor(e,Phi) != 1)
             {
                 e++;
             }
             return e;
         }
-       
+        private static BigInteger gcd(BigInteger a, BigInteger b)
+        {
+            if (a == 0)
+            {
+                return b;
+            }
+            else
+            {
+                return gcd(b % a, a);
+            }
+        }
+
         //private BigInteger[] extEuclid(BigInteger a, BigInteger b)
         //{
         //    if(b == 0)
@@ -204,17 +217,7 @@ namespace EncryptionAssignment.EncryptionDecryption
         //    return d;
         //}
         //                      */
-        //private static int gcd(BigInteger a, BigInteger b)
-        //{
-        //    if (a == 0)
-        //    {
-        //        return (int)b;
-        //    }
-        //    else
-        //    {
-        //        return gcd(b % a, a);
-        //    }
-        //}   
+
         public static BigInteger encrypt(BigInteger input, BigInteger e, BigInteger n)
         {
             return BigInteger.ModPow(input, e, n);

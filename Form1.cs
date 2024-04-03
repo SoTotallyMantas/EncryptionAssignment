@@ -96,10 +96,12 @@ namespace EncryptionAssignment
                 RSAEncryptionDecryption RSA = new RSAEncryptionDecryption();
 
                 byte[] data = RSA.EncryptRSA(XNumberInput.Text, YNumberInput.Text, Input.Text);
+                
                 PrivateKey = RSA.PrivateKey;
                 string hexString = BitConverter.ToString(data).Replace("-", "");
-                Output.Text = hexString;
+                
                 Output.Text = $"{hexString}.{RSA.Exponent}.{RSA.Modulus}";
+               
 
 
 
@@ -355,8 +357,8 @@ namespace EncryptionAssignment
 
         private void button1_Click(object sender, EventArgs e)
         {
-            XNumberInput.Text = GeneratePrimeNumber.GeneratePrimeNumbers(32).ToString();
-            YNumberInput.Text = GeneratePrimeNumber.GeneratePrimeNumbers(32).ToString();
+            XNumberInput.Text = GeneratePrimeNumber.GeneratePrimeNumbers(512).ToString();
+            YNumberInput.Text = GeneratePrimeNumber.GeneratePrimeNumbers(512).ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)

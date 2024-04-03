@@ -49,7 +49,7 @@ namespace EncryptionAssignment.Util
 
             for (int i = 0; i < 10; i++) 
             {
-                BigInteger a = GenerateRandomBigInteger(32); 
+                BigInteger a = GenerateRandomBigInteger(512); 
                 BigInteger x = BigInteger.ModPow(a, d, number);
                 if (x == 1 || x == number - 1)
                     continue;
