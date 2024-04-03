@@ -173,7 +173,7 @@ namespace EncryptionAssignment.EncryptionDecryption
         private BigInteger genE(BigInteger Phi)
         {
             BigInteger e = 65537; // Commonly used public exponent
-            while (BigInteger.GreatestCommonDivisor(e,Phi) != 1)
+            while (gcd(e,Phi) != 1)
             {
                 e++;
             }

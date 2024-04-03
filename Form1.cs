@@ -375,19 +375,25 @@ namespace EncryptionAssignment
 
         private void readRSAFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FileOperations fileOperations = new FileOperations();
+            try {
+                FileOperations fileOperations = new FileOperations();
 
-            Input.Text = fileOperations.readfromfile();
-            Selectedfile = fileOperations.Selectedpath;
-            string input = Input.Text;
-            string[] encryptedmessage = input.Split('.');
+                Input.Text = fileOperations.readfromfile();
+                Selectedfile = fileOperations.Selectedpath;
+                string input = Input.Text;
+                string[] encryptedmessage = input.Split('.');
 
-            string hexString = encryptedmessage[0];
-            string exponentString = encryptedmessage[1];
-            string modulusString = encryptedmessage[2];
-            BigInteger exponent = BigInteger.Parse(exponentString);
-            BigInteger modulus = BigInteger.Parse(modulusString);
-            ModulusRSA = modulus;
+                string hexString = encryptedmessage[0];
+                string exponentString = encryptedmessage[1];
+                string modulusString = encryptedmessage[2];
+                BigInteger exponent = BigInteger.Parse(exponentString);
+                BigInteger modulus = BigInteger.Parse(modulusString);
+                ModulusRSA = modulus;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Reading RSA File");
+            }
 
         }
 
